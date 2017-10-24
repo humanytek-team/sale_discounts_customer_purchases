@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+      <record id="view_pricelist_customer_discount_purchase_form" model="ir.ui.view">
+          <field name="name">pricelist.customer.discount.purchase.form</field>
+          <field name="model">pricelist.customer.discount.purchase</field>
+          <field name="arch" type="xml">
+              <form>
+                  <sheet>
+                      <group>
+                        <group>
+                          <field name="average_sales" />
+                          <field name="op" />
+                        </group>
+                        <group>
+                          <field name="discount_rate" />
+                        </group>
+                      </group>
+                      <notebook>
+                        <page string="Pricelists">
+                          <field name="pricelist_ids" />
+                        </page>
+                      </notebook>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <record id="view_pricelist_customer_discount_purchase_tree" model="ir.ui.view">
+          <field name="name">pricelist.customer.discount.purchase.tree</field>
+          <field name="model">pricelist.customer.discount.purchase</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="op" />
+                  <field name="average_sales" />
+                  <field name="discount_rate" />
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="action_pricelist_customer_discount_purchase">
+          <field name="name">Customer discounts on purchase volume</field>
+          <field name="res_model">pricelist.customer.discount.purchase</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Record a new Customer discount.
+              </p>
+          </field>
+      </record>
+
+      <menuitem
+          name="Customer discounts on purchase volume"
+          id="menu_pricelist_customer_discount_purchase"
+          action="action_pricelist_customer_discount_purchase"
+          parent="product.menu_product_pricelist_main"/>
+
+    </data>
+</openerp>
