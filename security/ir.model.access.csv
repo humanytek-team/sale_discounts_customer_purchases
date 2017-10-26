@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pricelist_customer_discount_purchase_user,pricelist.customer.discount.purchase.user,model_pricelist_customer_discount_purchase,base.group_user,1,0,0,0
+access_pricelist_customer_discount_purchase_user,pricelist.customer.discount.purchase.manager,model_pricelist_customer_discount_purchase,product.group_sale_pricelist,1,1,1,1
