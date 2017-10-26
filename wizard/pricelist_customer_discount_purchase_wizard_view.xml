@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="customer_discount_wizard_form" model="ir.ui.view">
+      <field name="name">customer.discount.wizard.form</field>
+      <field name="model">pricelist.customer.discount.purchase.wizard</field>
+      <field name="arch" type="xml">
+        <form>
+
+          <field invisible="1" name="state"/>
+
+          <p class="oe_grey" states="draft">
+       	    This wizard lets apply discounts for customers automatically
+            according to their purchase volume.The discount will be applied
+            through a new pricelist that will be created and will be assigned to
+            the customer.
+       	  </p>
+
+          <div states="draft">
+            <h2>Indicate the date from which the purchase volume is to be calculated</h2>
+            <field name="date" />
+          </div>
+
+          <div states="processed">
+            <h2>Customer discounts applied</h2>
+            <field name="customer_discount_ids" nolabel="1">
+              <tree create="0">
+                <field name="partner_id" />
+                <field name="discount" />
+              </tree>
+            </field>
+          </div>
+
+          <div states="no_discounts">
+            <h2>No customer applies for discounts</h2>
+          </div>
+
+          <footer>
+
+      	    <button
+              string="Calculate discounts for customers"
+              name="apply_discounts_to_customers"
+              type="object"
+              default_focus="1"
+              class="oe_highlight"
+              states="draft"/>
+
+      	    <button string="Cancel" class="oe_link" special="cancel"/>
+      	  </footer>
+
+        </form>
+
+      </field>
+
+    </record>
+
+    <record model="ir.actions.act_window" id="action_pricelist_customer_discount_purchase_wizard">
+        <field name="name">Customer discounts on purchase volume</field>
+        <field name="res_model">pricelist.customer.discount.purchase.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        name="Apply discounts to customers by purchases done"
+        id="menu_pricelist_customer_discount_purchase_wizard"
+        action="action_pricelist_customer_discount_purchase_wizard"
+        parent="base.menu_sales"/>
+
+  </data>
+</openerp>

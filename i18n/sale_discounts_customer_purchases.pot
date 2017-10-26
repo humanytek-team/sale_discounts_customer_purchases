@@ -1,0 +1,223 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_discounts_customer_purchases
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0e-20170815\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-26 07:34+0000\n"
+"PO-Revision-Date: 2017-10-26 07:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.ui.menu,name:sale_discounts_customer_purchases.menu_pricelist_customer_discount_purchase_wizard
+msgid "Apply discounts to customers by purchases done"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_product_pricelist_item_auto_added
+msgid "Auto added"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_average_sales
+msgid "Average Sales"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
+msgid "Calculate discounts for customers"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_create_uid
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_create_uid
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_create_date
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_create_date
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_partner_id
+msgid "Customer"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_customer_discount_ids
+msgid "Customer discounts"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
+msgid "Customer discounts applied"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.actions.act_window,name:sale_discounts_customer_purchases.action_pricelist_customer_discount_purchase
+#: model:ir.actions.act_window,name:sale_discounts_customer_purchases.action_pricelist_customer_discount_purchase_wizard
+#: model:ir.ui.menu,name:sale_discounts_customer_purchases.menu_pricelist_customer_discount_purchase
+msgid "Customer discounts on purchase volume"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_date
+msgid "Date"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_discount
+msgid "Discount"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_discount_rate
+msgid "Discount rate (%)"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_display_name
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_display_name
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: selection:pricelist.customer.discount.purchase.wizard,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_id
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_id
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_id
+msgid "ID"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
+msgid "Indicate the date from which the purchase volume is to be calculated"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard___last_update
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase___last_update
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_write_uid
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_write_uid
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_write_date
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_write_date
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
+msgid "No customer applies for discounts"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: selection:pricelist.customer.discount.purchase.wizard,state:0
+msgid "No discounts"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_op
+msgid "Op"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_product_pricelist_partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: code:addons/sale_discounts_customer_purchases/wizard/pricelist_customer_discount_purchase_wizard.py:92
+#, python-format
+msgid "Price list"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model,name:sale_discounts_customer_purchases.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model,name:sale_discounts_customer_purchases.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_pricelist_ids
+#: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.view_pricelist_customer_discount_purchase_form
+msgid "Pricelists"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: selection:pricelist.customer.discount.purchase.wizard,state:0
+msgid "Processed"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.actions.act_window,help:sale_discounts_customer_purchases.action_pricelist_customer_discount_purchase
+msgid "Record a new Customer discount."
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_state
+msgid "State"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
+msgid "This wizard lets apply discounts for customers automatically\n"
+"            according to their purchase volume.The discount will be applied\n"
+"            through a new pricelist that will be created and will be assigned to\n"
+"            the customer."
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model,name:sale_discounts_customer_purchases.model_customer_discount_wizard
+msgid "customer.discount.wizard"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model,name:sale_discounts_customer_purchases.model_pricelist_customer_discount_purchase
+msgid "pricelist.customer.discount.purchase"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model,name:sale_discounts_customer_purchases.model_pricelist_customer_discount_purchase_wizard
+msgid "pricelist.customer.discount.purchase.wizard"
+msgstr ""
+

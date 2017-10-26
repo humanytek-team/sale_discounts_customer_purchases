@@ -9,11 +9,11 @@
     'author': 'Humanytek',
     'website': "http://www.humanytek.com",
     'license': 'AGPL-3',
-    'depends': ['product', ],
+    'depends': ['product', 'sale', 'account',],
     'data': [
         'security/ir.model.access.csv',
         'views/pricelist_customer_discount_purchase_view.xml',
-        #'wizard/pricelist_customer_discount_purchase_view.xml',
+        'wizard/pricelist_customer_discount_purchase_wizard_view.xml',
     ],
     'installable': True,
     'auto_install': False

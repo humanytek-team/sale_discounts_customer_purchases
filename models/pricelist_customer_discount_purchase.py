@@ -13,8 +13,7 @@ class PricelistCustomerDiscountPurchase(models.Model):
 
     average_sales = fields.Float('Average Sales', required=True)
     op = fields.Selection([
-        ('=', '='),
-        ('!=', '!='),
+        ('=', '='),        
         ('>', '>'),
         ('<', '<'),
         ('>=', '>='),
