@@ -99,33 +99,34 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                             'name': pricelist_name,
                         })
 
-                    pricelist_item_discount_added_manual = False
+                    item_global = False
 
                     for item in customer_pricelist.item_ids:
 
-                        if item.applied_on == '3_global' and \
-                                item.compute_price == 'percentage':
+                        if item.applied_on == '3_global':
 
-                            if not item.auto_added:
-                                pricelist_item_discount_added_manual = item
+                            if not item_global:
+                                item_global = True
 
-                            else:
-                                customer_pricelist.item_ids -= item
+                        if item.compute_price == 'percentage':
+                            item.percent_price += discount_for_customer - \
+                                customer_pricelist.last_additional_discount
 
-                    customer_discount = 0.0
-                    if pricelist_item_discount_added_manual:
-                        customer_discount = \
-                            pricelist_item_discount_added_manual.percent_price
+                        if item.compute_price == 'formula':
+                            item.price_discount += discount_for_customer - \
+                                customer_pricelist.last_additional_discount
 
-                    ProductPricelistItem.create({
-                        'auto_added': True,
-                        'applied_on': '3_global',
-                        'compute_price': 'percentage',
-                        'percent_price': \
-                            discount_for_customer + customer_discount,
-                        'pricelist_id': customer_pricelist.id,
-                    })
+                    if not item_global:
+                        ProductPricelistItem.create({
+                            'auto_added': True,
+                            'applied_on': '3_global',
+                            'compute_price': 'percentage',
+                            'percent_price': discount_for_customer,
+                            'pricelist_id': customer_pricelist.id,
+                            })
 
+                    customer_pricelist.last_additional_discount = \
+                        discount_for_customer
                     customer.property_product_pricelist = customer_pricelist
 
                 else:
@@ -133,6 +134,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                     customer_pricelist = ProductPricelist.create({
                         'partner_id': customer.id,
                         'name': pricelist_name,
+                        'last_additional_discount': discount_for_customer,
                     })
 
                     ProductPricelistItem.create({
