@@ -9,6 +9,7 @@ class ProductPricelist(models.Model):
     _inherit = 'product.pricelist'
 
     partner_id = fields.Many2one('res.partner', 'Partner')
+    last_additional_discount = fields.Float('Last additional discount')
 
 
 class ProductPricelistItem(models.Model):
