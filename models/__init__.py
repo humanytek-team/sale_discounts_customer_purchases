@@ -4,3 +4,4 @@
 
 from . import pricelist_customer_discount_purchase
 from . import product_pricelist
+from . import res_company

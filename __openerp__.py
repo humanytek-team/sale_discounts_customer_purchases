@@ -13,6 +13,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/pricelist_customer_discount_purchase_view.xml',
+        'views/res_company_view.xml',
         'wizard/pricelist_customer_discount_purchase_wizard_view.xml',
     ],
     'installable': True,
