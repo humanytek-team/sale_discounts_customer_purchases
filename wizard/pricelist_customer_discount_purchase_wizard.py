@@ -91,6 +91,9 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                 pricelist_name = '%s (%s)' % (
                     _('Price list'), customer.name)
 
+                discount_customer_by_category = \
+                    customer.company_id.discount_customer_purchases_by_category
+
                 if customer.property_product_pricelist:
 
                     customer_pricelist = \
@@ -99,24 +102,100 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                             'name': pricelist_name,
                         })
 
-                    item_global = False
+                    if not discount_customer_by_category:
 
-                    for item in customer_pricelist.item_ids:
+                        item_global = False
 
-                        if item.applied_on == '3_global':
+                        for item in customer_pricelist.item_ids:
 
-                            if not item_global:
-                                item_global = True
+                            if item.applied_on == '3_global':
 
-                        if item.compute_price == 'percentage':
-                            item.percent_price += discount_for_customer - \
-                                customer_pricelist.last_additional_discount
+                                if not item_global:
+                                    item_global = True
 
-                        if item.compute_price == 'formula':
-                            item.price_discount += discount_for_customer - \
-                                customer_pricelist.last_additional_discount
+                            if item.compute_price == 'percentage':
+                                item.percent_price += discount_for_customer - \
+                                    customer_pricelist.last_additional_discount
 
-                    if not item_global:
+                            if item.compute_price == 'formula':
+                                item.price_discount += discount_for_customer - \
+                                    customer_pricelist.last_additional_discount
+
+                        if not item_global:
+                            ProductPricelistItem.create({
+                                'auto_added': True,
+                                'applied_on': '3_global',
+                                'compute_price': 'percentage',
+                                'percent_price': discount_for_customer,
+                                'pricelist_id': customer_pricelist.id,
+                                })
+
+                        customer_pricelist.last_additional_discount = \
+                            discount_for_customer
+
+                    else:
+
+                        item_category = False
+
+                        for item in customer_pricelist.item_ids:
+
+                            if item.applied_on == '3_global' and \
+                                    item.auto_added:
+
+                                customer_pricelist.item_ids -= item
+
+                            if customer_pricelist.last_additional_discount > 0:
+
+                                if item.compute_price == 'percentage':
+                                    item.percent_price -= \
+                                        customer_pricelist.last_additional_discount
+
+                                if item.compute_price == 'formula':
+                                    item.price_discount -= \
+                                        customer_pricelist.last_additional_discount
+
+                            if item.applied_on == '2_product_category':
+
+                                if item.compute_price == 'percentage' and \
+                                        not item.auto_added:
+
+                                    item.percent_price += discount_for_customer
+
+                                if item.compute_price == 'formula' and \
+                                        not item.auto_added:
+                                    item.price_discount += discount_for_customer
+
+                                if not item_category:
+                                    item_category = True
+
+                        if not item_category:
+
+                            discount_customer_category = \
+                                customer.company_id.discount_customer_purchases_category
+
+                            ProductPricelistItem.create({
+                                'auto_added': True,
+                                'applied_on': '2_product_category',
+                                'categ_id': discount_customer_category.id,
+                                'compute_price': 'percentage',
+                                'percent_price': discount_for_customer,
+                                'pricelist_id': customer_pricelist.id,
+                                })
+
+                        customer_pricelist.last_additional_discount = 0
+
+                    customer.property_product_pricelist = customer_pricelist
+
+                else:
+
+                    if not discount_customer_by_category:
+
+                        customer_pricelist = ProductPricelist.create({
+                            'partner_id': customer.id,
+                            'name': pricelist_name,
+                            'last_additional_discount': discount_for_customer,
+                            })
+
                         ProductPricelistItem.create({
                             'auto_added': True,
                             'applied_on': '3_global',
@@ -125,25 +204,24 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                             'pricelist_id': customer_pricelist.id,
                             })
 
-                    customer_pricelist.last_additional_discount = \
-                        discount_for_customer
-                    customer.property_product_pricelist = customer_pricelist
+                    else:
 
-                else:
+                        discount_customer_category = \
+                            customer.company_id.discount_customer_purchases_category
 
-                    customer_pricelist = ProductPricelist.create({
-                        'partner_id': customer.id,
-                        'name': pricelist_name,
-                        'last_additional_discount': discount_for_customer,
-                    })
+                        customer_pricelist = ProductPricelist.create({
+                            'partner_id': customer.id,
+                            'name': pricelist_name,
+                            })
 
-                    ProductPricelistItem.create({
-                        'auto_added': True,
-                        'applied_on': '3_global',
-                        'compute_price': 'percentage',
-                        'percent_price': discount_for_customer,
-                        'pricelist_id': customer_pricelist.id,
-                        })
+                        ProductPricelistItem.create({
+                            'auto_added': True,
+                            'applied_on': '2_product_category',
+                            'categ_id': discount_customer_category.id,
+                            'compute_price': 'percentage',
+                            'percent_price': discount_for_customer,
+                            'pricelist_id': customer_pricelist.id,
+                            })
 
                     customer.property_product_pricelist = customer_pricelist
 
