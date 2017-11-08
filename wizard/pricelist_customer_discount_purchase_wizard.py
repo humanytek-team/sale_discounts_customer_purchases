@@ -229,6 +229,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                     'partner_id': customer.id,
                     'discount': discount_for_customer,
                     'wizard_id': self.id,
+                    'customer_sales_avg': customer_purchase_avg,
                 })
 
         if self.customer_discount_ids:
@@ -258,3 +259,4 @@ class CustomerDiscountWizard(models.TransientModel):
     wizard_id = fields.Many2one(
         'pricelist.customer.discount.purchase.wizard',
         'Wizard')
+    customer_sales_avg = fields.Float('Average sales')

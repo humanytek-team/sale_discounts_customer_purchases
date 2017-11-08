@@ -27,6 +27,7 @@
             <field name="customer_discount_ids" nolabel="1">
               <tree create="0">
                 <field name="partner_id" />
+                <field name="customer_sales_avg" />
                 <field name="discount" />
               </tree>
             </field>
