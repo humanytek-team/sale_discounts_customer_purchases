@@ -4,7 +4,7 @@
 
 {
     'name': 'Manager of discounts by customer purchases',
-    'version': '9.0.1.0.1',
+    'version': '9.0.1.1.0',
     'category': 'Sales',
     'author': 'Humanytek',
     'website': "http://www.humanytek.com",
@@ -13,6 +13,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/pricelist_customer_discount_purchase_view.xml',
+        'views/res_company_view.xml',
         'wizard/pricelist_customer_discount_purchase_wizard_view.xml',
     ],
     'installable': True,
