@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0e-20170815\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-26 07:34+0000\n"
-"PO-Revision-Date: 2017-10-26 07:34+0000\n"
+"POT-Creation-Date: 2017-11-09 09:58+0000\n"
+"PO-Revision-Date: 2017-11-09 09:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,11 @@ msgid "Average Sales"
 msgstr ""
 
 #. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_customer_sales_avg
+msgid "Average sales"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
 #: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
 msgid "Calculate discounts for customers"
 msgstr ""
@@ -38,6 +43,16 @@ msgstr ""
 #. module: sale_discounts_customer_purchases
 #: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
 msgid "Cancel"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_res_company_discount_customer_purchases_category
+msgid "Category"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model,name:sale_discounts_customer_purchases.model_res_company
+msgid "Companies"
 msgstr ""
 
 #. module: sale_discounts_customer_purchases
@@ -77,11 +92,6 @@ msgid "Customer discounts on purchase volume"
 msgstr ""
 
 #. module: sale_discounts_customer_purchases
-#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_date
-msgid "Date"
-msgstr ""
-
-#. module: sale_discounts_customer_purchases
 #: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_discount
 msgid "Discount"
 msgstr ""
@@ -104,6 +114,17 @@ msgid "Draft"
 msgstr ""
 
 #. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_res_company_discount_customer_purchases_by_category
+msgid "Enable discounts on customers over a category of products"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_end_date
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_pricelist_end_date
+msgid "End Date"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
 #: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_customer_discount_wizard_id
 #: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_id
 #: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_id
@@ -112,7 +133,7 @@ msgstr ""
 
 #. module: sale_discounts_customer_purchases
 #: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
-msgid "Indicate the date from which the purchase volume is to be calculated"
+msgid "Indicate the start date and end date from which the purchase volume is to be calculated"
 msgstr ""
 
 #. module: sale_discounts_customer_purchases
@@ -137,6 +158,11 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_product_pricelist_last_additional_discount
+msgid "Last additional discount"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
 #: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
 msgid "No customer applies for discounts"
 msgstr ""
@@ -157,7 +183,7 @@ msgid "Partner"
 msgstr ""
 
 #. module: sale_discounts_customer_purchases
-#: code:addons/sale_discounts_customer_purchases/wizard/pricelist_customer_discount_purchase_wizard.py:92
+#: code:addons/sale_discounts_customer_purchases/wizard/pricelist_customer_discount_purchase_wizard.py:134
 #, python-format
 msgid "Price list"
 msgstr ""
@@ -184,8 +210,19 @@ msgid "Processed"
 msgstr ""
 
 #. module: sale_discounts_customer_purchases
+#: model:ir.ui.view,arch_db:sale_discounts_customer_purchases.customer_discount_wizard_form
+msgid "Range of effective dates of the price lists to be created for customers with discounts"
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
 #: model:ir.actions.act_window,help:sale_discounts_customer_purchases.action_pricelist_customer_discount_purchase
 msgid "Record a new Customer discount."
+msgstr ""
+
+#. module: sale_discounts_customer_purchases
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_pricelist_start_date
+#: model:ir.model.fields,field_description:sale_discounts_customer_purchases.field_pricelist_customer_discount_purchase_wizard_start_date
+msgid "Start Date"
 msgstr ""
 
 #. module: sale_discounts_customer_purchases
