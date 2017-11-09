@@ -18,8 +18,27 @@
        	  </p>
 
           <div states="draft">
-            <h2>Indicate the date from which the purchase volume is to be calculated</h2>
-            <field name="date" />
+
+            <h2>Indicate the start date and end date from which the purchase volume is to be calculated</h2>
+            <group>
+              <group>
+                <field name="start_date" />
+              </group>
+              <group>
+                <field name="end_date" />
+              </group>
+            </group>
+
+            <h2>Range of effective dates of the price lists to be created for customers with discounts</h2>
+            <group>
+              <group>
+                <field name="pricelist_start_date" />
+              </group>
+              <group>
+                <field name="pricelist_end_date" />
+              </group>
+            </group>
+
           </div>
 
           <div states="processed">
