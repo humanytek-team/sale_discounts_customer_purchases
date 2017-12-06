@@ -80,6 +80,11 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
         required=True,
         default=_get_pricelist_end_date)
 
+    def diff_month(self, d1, d2):
+        """Returns the number of months of diff between two dates"""
+
+        return (d1.year - d2.year) * 12 + d1.month - d2.month
+
     @api.multi
     def apply_discounts_to_customers(self):
         """Process all customers and gives them discounts (through price lists)
@@ -91,6 +96,11 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
              'end_date',
              'pricelist_start_date',
              'pricelist_end_date'])[0]
+
+        date1 = datetime.strptime(wizard_data['start_date'], '%Y-%m-%d')
+        date2 = datetime.strptime(wizard_data['end_date'], '%Y-%m-%d')
+        number_months = abs(self.diff_month(date1, date2)) + 1
+        
         ResPartner = self.env['res.partner']
         customers = ResPartner.search([
             ('customer', '=', True),
@@ -115,8 +125,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
             )
             customer_total_paid = sum(
                 customer_invoices_paid.mapped('amount_total'))
-            customer_purchase_avg = customer_total_paid / len(
-                customer_invoices_paid)
+            customer_purchase_avg = customer_total_paid / number_months
             discounts_configured = PricelistCustomerDiscountPurchase.search(
                 [], order='average_sales')
             discount_for_customer = False
