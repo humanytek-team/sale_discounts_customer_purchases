@@ -4,7 +4,7 @@
 
 {
     'name': 'Manager of discounts by customer purchases',
-    'version': '9.0.1.1.0',
+    'version': '9.0.1.1.1',
     'category': 'Sales',
     'author': 'Humanytek',
     'website': "http://www.humanytek.com",
