@@ -42,7 +42,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
             month = '01'
         else:
             year = current_year
-            month = str(int(current_month)+1)
+            month = str(int(current_month) + 1)
             if len(month) == 1:
                 month = '0{0}'.format(month)
 
@@ -100,7 +100,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
         date1 = datetime.strptime(wizard_data['start_date'], '%Y-%m-%d')
         date2 = datetime.strptime(wizard_data['end_date'], '%Y-%m-%d')
         number_months = abs(self.diff_month(date1, date2)) + 1
-        
+
         ResPartner = self.env['res.partner']
         customers = ResPartner.search([
             ('customer', '=', True),
@@ -115,16 +115,33 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
         ProductPricelist = self.env['product.pricelist']
         ProductPricelistItem = self.env['product.pricelist.item']
         CustomerDiscountWizard = self.env['customer.discount.wizard']
+        AccountInvoice = self.env['account.invoice']
 
         for customer in customers:
 
             customer_invoices_paid = customer.invoice_ids.filtered(
                 lambda inv: inv.state == 'paid' and
+                inv.type == 'out_invoice' and
                 inv.date_invoice >= wizard_data['start_date'] and
                 inv.date_invoice <= wizard_data['end_date']
             )
+
+            total_refund = 0
+
+            for inv in customer_invoices_paid:
+
+                refund_invoices = AccountInvoice.search([
+                    ('type', '=', 'out_refund'),
+                    ('origin', '=', inv.number),
+                    ('state', 'in', ['open', 'paid']),
+                ])
+
+                if refund_invoices:
+                    total_refund += sum(refund_invoices.mapped('amount_total'))
+
             customer_total_paid = sum(
-                customer_invoices_paid.mapped('amount_total'))
+                customer_invoices_paid.mapped('amount_total')) - total_refund
+
             customer_purchase_avg = customer_total_paid / number_months
             discounts_configured = PricelistCustomerDiscountPurchase.search(
                 [], order='average_sales')
@@ -168,25 +185,29 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                                 item.percent_price += discount_for_customer
 
                                 if item.percent_price > \
-                                    customer_pricelist.last_additional_discount:
+                                        customer_pricelist.last_additional_discount:
 
                                     item.percent_price -= \
                                         customer_pricelist.last_additional_discount
 
-                                item.date_start = wizard_data['pricelist_start_date']
-                                item.date_end = wizard_data['pricelist_end_date']
+                                item.date_start = wizard_data[
+                                    'pricelist_start_date']
+                                item.date_end = wizard_data[
+                                    'pricelist_end_date']
 
                             if item.compute_price == 'formula':
                                 item.price_discount += discount_for_customer
 
                                 if item.price_discount > \
-                                    customer_pricelist.last_additional_discount:
+                                        customer_pricelist.last_additional_discount:
 
                                     item.price_discount -= \
                                         customer_pricelist.last_additional_discount
 
-                                item.date_start = wizard_data['pricelist_start_date']
-                                item.date_end = wizard_data['pricelist_end_date']
+                                item.date_start = wizard_data[
+                                    'pricelist_start_date']
+                                item.date_end = wizard_data[
+                                    'pricelist_end_date']
 
                             if item.applied_on == '2_product_category' and \
                                     item.auto_added:
@@ -206,7 +227,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                                 'pricelist_id': customer_pricelist.id,
                                 'date_start': wizard_data['pricelist_start_date'],
                                 'date_end': wizard_data['pricelist_end_date'],
-                                })
+                            })
 
                         customer_pricelist.last_additional_discount = \
                             discount_for_customer
@@ -254,7 +275,8 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
 
                                 item.date_start = \
                                     wizard_data['pricelist_start_date']
-                                item.date_end = wizard_data['pricelist_end_date']
+                                item.date_end = wizard_data[
+                                    'pricelist_end_date']
 
                                 if not item_category:
                                     item_category = True
@@ -270,7 +292,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                                 'pricelist_id': customer_pricelist.id,
                                 'date_start': wizard_data['pricelist_start_date'],
                                 'date_end': wizard_data['pricelist_end_date'],
-                                })
+                            })
 
                     customer_pricelist.last_additional_discount = discount_for_customer
                     customer.property_product_pricelist = customer_pricelist
@@ -283,7 +305,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                             'partner_id': customer.id,
                             'name': pricelist_name,
                             'last_additional_discount': discount_for_customer,
-                            })
+                        })
 
                         ProductPricelistItem.create({
                             'auto_added': True,
@@ -293,7 +315,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                             'pricelist_id': customer_pricelist.id,
                             'date_start': wizard_data['pricelist_start_date'],
                             'date_end': wizard_data['pricelist_end_date'],
-                            })
+                        })
 
                     else:
 
@@ -304,7 +326,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                             'partner_id': customer.id,
                             'name': pricelist_name,
                             'last_additional_discount': discount_for_customer,
-                            })
+                        })
 
                         ProductPricelistItem.create({
                             'auto_added': True,
@@ -315,7 +337,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                             'pricelist_id': customer_pricelist.id,
                             'date_start': wizard_data['pricelist_start_date'],
                             'date_end': wizard_data['pricelist_end_date'],
-                            })
+                        })
 
                     customer.property_product_pricelist = customer_pricelist
 
