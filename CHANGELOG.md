@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [9.0.1.1.2] - 2017-12-23
+### changed
+- Amounts corresponding to credit notes invoices were excluded
+
 ## [9.0.1.1.1] - 2017-12-06
 ### changed
 - The average of the customer's purchases is now obtained by taking into account the number of months of the date range placed in the wizard.
