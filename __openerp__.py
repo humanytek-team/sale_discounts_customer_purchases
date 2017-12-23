@@ -4,12 +4,12 @@
 
 {
     'name': 'Manager of discounts by customer purchases',
-    'version': '9.0.1.1.1',
+    'version': '9.0.1.1.2',
     'category': 'Sales',
     'author': 'Humanytek',
     'website': "http://www.humanytek.com",
     'license': 'AGPL-3',
-    'depends': ['product', 'sale', 'account',],
+    'depends': ['product', 'sale', 'account', ],
     'data': [
         'security/ir.model.access.csv',
         'views/pricelist_customer_discount_purchase_view.xml',
