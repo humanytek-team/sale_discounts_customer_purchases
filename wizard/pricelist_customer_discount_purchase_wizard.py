@@ -155,6 +155,22 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                     total_partial_payments += sum(
                         inv.payment_move_line_ids.mapped('credit'))
 
+            for child in customer.child_ids:
+
+                child_invoices_open = child.invoice_ids.filtered(
+                    lambda inv: inv.state == 'open' and
+                    inv.type == 'out_invoice' and
+                    inv.date_invoice >= wizard_data['start_date'] and
+                    inv.date_invoice <= wizard_data['end_date']
+                )
+
+                for inv in child_invoices_open:
+
+                    if inv.payment_move_line_ids:
+
+                        total_partial_payments += sum(
+                            inv.payment_move_line_ids.mapped('credit'))
+
             customer_total_paid = sum(
                 customer_invoices_paid.mapped('amount_total')) - total_refund \
                 + total_partial_payments
