@@ -105,7 +105,7 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
         customers = ResPartner.search([
             ('customer', '=', True),
             ('invoice_ids', '!=', False),
-            ('invoice_ids.state', 'in', ['paid']),
+            ('invoice_ids.state', 'in', ['paid', 'open']),
             ('invoice_ids.date_invoice', '>=', wizard_data['start_date']),
             ('invoice_ids.date_invoice', '<=', wizard_data['end_date']),
         ])
@@ -139,8 +139,41 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
                 if refund_invoices:
                     total_refund += sum(refund_invoices.mapped('amount_total'))
 
+            customer_invoices_open = customer.invoice_ids.filtered(
+                lambda inv: inv.state == 'open' and
+                inv.type == 'out_invoice' and
+                inv.date_invoice >= wizard_data['start_date'] and
+                inv.date_invoice <= wizard_data['end_date']
+            )
+
+            total_partial_payments = 0
+
+            for inv in customer_invoices_open:
+
+                if inv.payment_move_line_ids:
+
+                    total_partial_payments += sum(
+                        inv.payment_move_line_ids.mapped('credit'))
+
+            for child in customer.child_ids:
+
+                child_invoices_open = child.invoice_ids.filtered(
+                    lambda inv: inv.state == 'open' and
+                    inv.type == 'out_invoice' and
+                    inv.date_invoice >= wizard_data['start_date'] and
+                    inv.date_invoice <= wizard_data['end_date']
+                )
+
+                for inv in child_invoices_open:
+
+                    if inv.payment_move_line_ids:
+
+                        total_partial_payments += sum(
+                            inv.payment_move_line_ids.mapped('credit'))
+
             customer_total_paid = sum(
-                customer_invoices_paid.mapped('amount_total')) - total_refund
+                customer_invoices_paid.mapped('amount_total')) - total_refund \
+                + total_partial_payments
 
             customer_purchase_avg = customer_total_paid / number_months
             discounts_configured = PricelistCustomerDiscountPurchase.search(
