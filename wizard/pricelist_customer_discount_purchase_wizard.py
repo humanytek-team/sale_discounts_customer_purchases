@@ -117,7 +117,13 @@ class PricelistCustomerDiscountPurchaseWizard(models.TransientModel):
         CustomerDiscountWizard = self.env['customer.discount.wizard']
         AccountInvoice = self.env['account.invoice']
 
+        customer_general_public = self.env.ref(
+            'mx_customer_general_public.mx_customer_general_public')
+
         for customer in customers:
+
+            if customer == customer_general_public:
+                continue
 
             customer_invoices_paid = customer.invoice_ids.filtered(
                 lambda inv: inv.state == 'paid' and
