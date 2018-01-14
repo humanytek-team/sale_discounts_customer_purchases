@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [9.0.1.1.5] - 2018-01-14
+### changed
+- The customer "PUBLICO GENERAL" was excluded of calculation.
+
 ## [9.0.1.1.4]  - 2018-01-13
 ### changed
 - The refund invoice were excluded of calculation.
